@@ -1,9 +1,12 @@
 
 # Hellfire License (v1.0)
 
+**Copyright © 2024 Michael Binder**  
+Michael Binder is the creator and owner of the HellfireEngine. All rights regarding the original authorship and ownership of HellfireEngine are retained by Michael Binder.
+
 1. **Free Usage**: The HellfireEngine may be used to create and distribute video games, both commercially and non-commercially, without any fees.
 
-2. **Bundling with Games**: When distributing a game created with HellfireEngine, it is permitted to bundle the engine’s runtime and associated configuration files (.ini files) as part of the game distribution. However, this is only allowed for the purpose of running the game, and not for distributing the engine itself as a standalone product.
+2. **Bundling with Games**: When distributing a game created with HellfireEngine, the runtime (engine executable) may be renamed to reflect the game’s title, and the executable's icon may be changed for branding purposes. The user-defined configuration files (`.ini` files) and assets (such as images, sounds, etc..) may also be bundled with the renamed executable to create the final game package. While the executable can be renamed and its icon changed, it must still be clear that the underlying technol...
 
 3. **No Standalone Redistribution**: The HellfireEngine itself (in its original or modified form) may not be distributed, sold, or monetized as a standalone product. The engine can only be distributed as part of a game created using HellfireEngine, and only to the extent necessary for the game to function.
 
