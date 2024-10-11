@@ -1,5 +1,7 @@
 Include "core/common/coordinates.bmx"
 Include "core/map/TTileMap.bmx"
+Include "core/common/TAnimSeq.bmx"
+Include "core/common/TFps.bmx"
 
 
 ' Main game loop
@@ -12,7 +14,12 @@ Local tileset:TImage = LoadAnimImage("tmp/tileset.png", TTile.TILE_WIDTH, TTile.
 Global highlightImg:TImage = LoadImage("tmp/highlight.png")
 Local tileIdToSet = 1
 
+Local char:TImage = LoadAnimImage("tmp/character.png", 96, 96, 0, 8);
+Local charIdle:TAnimSeq = New TAnimSeq(0, 7, 100);
+Local fpsCounter:TFps = New TFps()
+
 While Not AppTerminate()
+    fpsCounter.Update()
     Cls()
     
     ' Get mouse position
@@ -32,6 +39,8 @@ While Not AppTerminate()
 
 	map.HightlightTile(highlightImg, worldX, worldY)
 
+    charIdle.Play(char, map.x + 100, map.y + 100)
+
     If mh1
         tileIdToSet = (tileIdToSet + 1) Mod 5
         map.SetTile(0, worldX, worldY, tileIdToSet)
@@ -40,13 +49,12 @@ While Not AppTerminate()
     EndIf
 
     If md2
-        ' map.Move(mxs, mys)    
-        map.Move(1, 0)  
+        map.Move(mxs, mys)
     EndIf
 
     ?Debug
-        DrawText("worldX: " + worldX + " worldY: " + worldY, 10, 10)
+        DrawText(fpsCounter.fps + " FPS", 10, 10)
+        DrawText("worldX: " + worldX + " worldY: " + worldY, 10, 30)
     ?
-    
     Flip(1)
 Wend
