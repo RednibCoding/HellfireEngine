@@ -6,6 +6,9 @@ Include "core/common/TFps.bmx"
 
 ' Main game loop
 Graphics(1280, 800, 0, 60, 2)
+SetBlend(ALPHABLEND)
+SetVirtualResolution(1024, 600)
+AppTitle = "Hellfire Engine Demo"
 
 ' Initialize the tile map
 Local map:TTileMap = New TTileMap(100, 100, 20, 20, TTile.TILE_WIDTH, TTile.TILE_HEIGHT)
@@ -14,8 +17,8 @@ Local tileset:TImage = LoadAnimImage("tmp/tileset.png", TTile.TILE_WIDTH, TTile.
 Global highlightImg:TImage = LoadImage("tmp/highlight.png")
 Local tileIdToSet = 1
 
-Local char:TImage = LoadAnimImage("tmp/character.png", 96, 96, 0, 8);
-Local charIdle:TAnimSeq = New TAnimSeq(0, 7, 100);
+Local char:TImage = LoadAnimImage("tmp/character2.png", 96, 96, 0, 20);
+Local charIdle:TAnimSeq = New TAnimSeq(0, 20, 100);
 Local fpsCounter:TFps = New TFps()
 
 While Not AppTerminate()
@@ -23,8 +26,8 @@ While Not AppTerminate()
     Cls()
     
     ' Get mouse position
-    Local mouseX:Int = MouseX()
-    Local mouseY:Int = MouseY()
+    Local mouseX:Int = VirtualMouseX()
+    Local mouseY:Int = VirtualMouseY()
     Local mh1:Int = MouseHit(1)
     Local mh2:Int = MouseHit(2)
     Local md2:Int = MouseDown(2)
