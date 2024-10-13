@@ -1,8 +1,18 @@
+SuperStrict
+
+' Framework BRL.Max2D
+' Import BRL.PolledInput
+' Import BRL.Graphics
+' Import BRL.GLMax2D
+' Import BRL.Timer
+' Import BRL.Random
+
 Include "core/common/coordinates.bmx"
 Include "core/map/TTileMap.bmx"
 Include "core/common/TAnimSeq.bmx"
 Include "core/common/TFps.bmx"
 
+SetGraphicsDriver( GLMax2DDriver(), GRAPHICS_BACKBUFFER )
 
 ' Main game loop
 Graphics(1280, 800, 0, 60, 2)
@@ -11,15 +21,15 @@ SetVirtualResolution(1024, 600)
 AppTitle = "Hellfire Engine Demo"
 
 ' Initialize the tile map
-Local map:TTileMap = New TTileMap(100, 100, 20, 20, TTile.TILE_WIDTH, TTile.TILE_HEIGHT)
+Local map:TTileMap = TTileMap.Create(100, 100, 20, 20, TTile.TILE_WIDTH, TTile.TILE_HEIGHT)
 
 Local tileset:TImage = LoadAnimImage("tmp/tileset.png", TTile.TILE_WIDTH, TTile.TILE_TOTAL_HEIGHT, 0, 5)
 Global highlightImg:TImage = LoadImage("tmp/highlight.png")
-Local tileIdToSet = 1
+Local tileIdToSet:Int = 1
 
 Local char:TImage = LoadAnimImage("tmp/character2.png", 96, 96, 0, 20);
-Local charIdle:TAnimSeq = New TAnimSeq(0, 20, 100);
-Local fpsCounter:TFps = New TFps()
+Local charIdle:TAnimSeq = TAnimSeq.Create(0, 20, 100);
+Local fpsCounter:TFps = New TFps
 
 While Not AppTerminate()
     fpsCounter.Update()

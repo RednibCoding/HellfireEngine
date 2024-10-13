@@ -9,14 +9,17 @@ Type TAnimSeq
 	Field _startFrame:Int
 	Field _endFrame:Int
 
-	Method New(startFrame:Int, endFrame:Int, animSpeed:Int)
-		self._totalFrames = endFrame - startFrame
-		self._currentFrame = Rand(startFrame, endFrame)
-		self._startFrame = startFrame
-		self._endFrame = endFrame
-		self.speed = animSpeed
-		self.isPlaying = True
-	EndMethod
+	Function Create:TAnimSeq(startFrame:Int, endFrame:Int, animSpeed:Int)
+		Local this:TAnimSeq = New TAnimSeq
+		this._totalFrames = endFrame - startFrame
+		this._currentFrame = Rand(startFrame, endFrame)
+		this._startFrame = startFrame
+		this._endFrame = endFrame
+		this.speed = animSpeed
+		this.isPlaying = True
+
+		Return this
+	EndFunction
 
 	Method Play(image:TImage, x:Int, y:Int)
 		If Self._currentFrame < Self._endFrame Then

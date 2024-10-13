@@ -12,40 +12,42 @@ Type TTileMap
     Field layer1:TTile[,]
     Field layer2:TTile[,]
 
-    Method New(x:Int, y:Int, width:Int, height:Int, tileWidth:Int, tileHeight:Int)
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.tileWidth = tileWidth
-        self.tileHeight = tileHeight
+    Function Create:TTileMap(x:Int, y:Int, width:Int, height:Int, tileWidth:Int, tileHeight:Int)
+        Local this:TTileMap = New TTileMap
+        this.x = x
+        this.y = y
+        this.width = width
+        this.height = height
+        this.tileWidth = tileWidth
+        this.tileHeight = tileHeight
 
         ' Initialize the map array
-        self.layer0 = New TTile[self.width, self.height]
-        For Local y:Int = 0 Until self.width
-            For Local x:Int = 0 Until self.height
-                layer0[x, y] = New TTile
-                layer0[x, y].tileID = 0
-                layer0[x, y].occupied = 0
+        this.layer0 = New TTile[this.width, this.height]
+        For Local y:Int = 0 Until this.width
+            For Local x:Int = 0 Until this.height
+                this.layer0[x, y] = New TTile
+                this.layer0[x, y].tileID = 0
+                this.layer0[x, y].occupied = 0
             Next
         Next
-        self.layer1 = New TTile[self.width, self.height]
-        For Local y:Int = 0 Until self.width
-            For Local x:Int = 0 Until self.height
-                layer1[x, y] = New TTile
-                layer1[x, y].tileID = -1
-                layer1[x, y].occupied = 0
+        this.layer1 = New TTile[this.width, this.height]
+        For Local y:Int = 0 Until this.width
+            For Local x:Int = 0 Until this.height
+                this.layer1[x, y] = New TTile
+                this.layer1[x, y].tileID = -1
+                this.layer1[x, y].occupied = 0
             Next
         Next
-        self.layer2 = New TTile[self.width, self.height]
-        For Local y:Int = 0 Until self.width
-            For Local x:Int = 0 Until self.height
-                layer2[x, y] = New TTile
-                layer2[x, y].tileID = -1
-                layer2[x, y].occupied = 0
+        this.layer2 = New TTile[this.width, this.height]
+        For Local y:Int = 0 Until this.width
+            For Local x:Int = 0 Until this.height
+                this.layer2[x, y] = New TTile
+                this.layer2[x, y].tileID = -1
+                this.layer2[x, y].occupied = 0
             Next
         Next
-    EndMethod
+        Return this
+    EndFunction
 
     Method SetTile(layer:Int, worldX:Int, worldY:Int, tileID:Int)
         If worldX >= 0 And worldX < self.width And worldY >= 0 And worldY < self.height
